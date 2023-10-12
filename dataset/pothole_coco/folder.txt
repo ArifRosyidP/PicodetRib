@@ -1,0 +1,5 @@
+pothole_coco
+annotations
+testImage
+trainImage
+validImage

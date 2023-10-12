@@ -1,0 +1,23 @@
+metric: COCO
+# num_classes: 80
+num_classes: 2
+
+TrainDataset:
+  name: COCODataSet
+  image_dir: trainImage
+  anno_path: annotations/instance_trainPothole.json
+  dataset_dir: dataset/pothole_coco
+  data_fields: ['image', 'gt_bbox', 'gt_class', 'is_crowd']
+
+EvalDataset:
+  name: COCODataSet
+  image_dir: validImage
+  anno_path: annotations/instance_validPothole.json
+  dataset_dir: dataset/pothole_coco
+  allow_empty: true
+
+TestDataset:
+  name: ImageFolder
+  image_dir: testImage
+  anno_path: annotations/instance_testPothole.json # also support txt (like VOC's label_list.txt)
+  dataset_dir: dataset/pothole_coco # if set, anno_path will be 'dataset_dir/anno_path'
