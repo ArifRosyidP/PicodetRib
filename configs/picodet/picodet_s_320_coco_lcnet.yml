@@ -1,5 +1,5 @@
 _BASE_: [
-  '../datasets/coco_detection.yml',
+  '../datasets/coco_detectionPothole.yml',
   '../runtime.yml',
   '_base_/picodet_v2.yml',
   '_base_/optimizer_300e.yml',
@@ -7,7 +7,7 @@ _BASE_: [
 ]
 
 pretrain_weights: https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/legendary_models/PPLCNet_x0_75_pretrained.pdparams
-weights: output/picodet_s_320_coco/best_model
+weights: model/picodet_s_320_coco_lcnet/best_model
 find_unused_parameters: True
 use_ema: true
 epoch: 300
