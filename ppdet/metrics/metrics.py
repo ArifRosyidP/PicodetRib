@@ -105,8 +105,11 @@ class COCOMetric(Metric):
 
         # multi-scale inputs: all inputs have same im_id
         if isinstance(inputs, typing.Sequence):
+            # print(inputs)
             im_id = inputs[0]['im_id']
+            
         else:
+            # print(inputs)
             im_id = inputs['im_id']
         outs['im_id'] = im_id.numpy() if isinstance(im_id,
                                                     paddle.Tensor) else im_id

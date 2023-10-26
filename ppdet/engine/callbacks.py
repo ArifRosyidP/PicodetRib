@@ -203,7 +203,7 @@ class Checkpointer(Callback):
                             return
                         if map_res[key][0] >= self.best_ap:
                             self.best_ap = map_res[key][0]
-                            save_name = 'best_model'
+                            save_name = 'best_model_epoch_{}'.format(epoch_id)
                             weight = self.weight.state_dict()
                         logger.info("Best test {} {} is {:0.3f}.".format(
                             key, eval_func, abs(self.best_ap)))
@@ -481,7 +481,8 @@ class WandbCallback(Callback):
                             return
                         if map_res[key][0] >= self.best_ap:
                             self.best_ap = map_res[key][0]
-                            save_name = 'best_model'
+                            # save_name = 'best_model'
+                            save_name = 'best_model_epoch_{}'.format(epoch_id)
                             tags = ["best", "epoch_{}".format(epoch_id)]
 
                             self.save_model(

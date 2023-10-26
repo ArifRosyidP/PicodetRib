@@ -163,6 +163,7 @@ class Trainer(object):
             ])  # exclude BatchNorm running status
             logger.info('Model Params : {} M.'.format((params / 1e6).numpy()[
                 0]))
+            print('params: ', params)
 
         # build optimizer in train mode
         if self.mode == 'train':
@@ -1004,10 +1005,24 @@ class Trainer(object):
             _m.accumulate()
             _m.reset()
 
-        if visualize:
+        if visualize:           
             for outs in results:
                 batch_res = get_infer_results(outs, clsid2catid)
                 bbox_num = outs['bbox_num']
+
+                # print(batch_res)
+
+                # Get the predicted class IDs and scores
+                pred_class_ids_scores = [(bbox['category_id'], bbox['score']) for bbox in batch_res['bbox']]
+
+                # Filter the results based on the score
+                filtered_results = [(id, score) for id, score in pred_class_ids_scores if score > draw_threshold]
+
+                # Get the corresponding class names
+                pred_class_names = [catid2name[clsid2catid[id]] for id, score in filtered_results]
+
+                # Add the detected objects to the 'outs' array
+                outs['pred_class_names'] = pred_class_names
 
                 start = 0
                 for i, im_id in enumerate(outs['im_id']):
