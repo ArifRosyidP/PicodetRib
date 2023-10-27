@@ -16,12 +16,12 @@
     ],
     "categories": [
         {
-            "supercategory": null,
+            "supercategory": "none",
             "id": 0,
             "name": "_background_"
         },
         {
-            "supercategory": null,
+            "supercategory": "potholes",
             "id": 1,
             "name": "pothole"
         }
