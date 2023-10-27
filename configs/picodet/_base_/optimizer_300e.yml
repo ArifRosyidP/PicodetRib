@@ -1,5 +1,4 @@
-# epoch: 300
-epoch: 15
+epoch: 300
 
 LearningRate:
   base_lr: 0.32
