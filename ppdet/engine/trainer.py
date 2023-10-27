@@ -138,12 +138,32 @@ class Trainer(object):
         # EvalDataset build with BatchSampler to evaluate in single device
         # TODO: multi-device evaluate
         if self.mode == 'eval':
+            params1 = sum([
+                p.numel() for n, p in self.model. named_parameters()
+                if all([x not in n for x in ['_mean', '_variance']])
+            ]) # exclude BatchNorm running status
+            print('params1: ', params1)
             if cfg.architecture == 'FairMOT':
+                params2 = sum([
+                    p.numel() for n, p in self.model. named_parameters()
+                    if all([x not in n for x in ['_mean', '_variance']])
+                ]) # exclude BatchNorm running status
+                print('params2: ', params2)
                 self.loader = create('EvalMOTReader')(self.dataset, 0)
             elif cfg.architecture == "METRO_Body":
+                params3 = sum([
+                    p.numel() for n, p in self.model. named_parameters()
+                    if all([x not in n for x in ['_mean', '_variance']])
+                ]) # exclude BatchNorm running status
+                print('params3: ', params3)
                 reader_name = '{}Reader'.format(self.mode.capitalize())
                 self.loader = create(reader_name)(self.dataset, cfg.worker_num)
             else:
+                params4 = sum([
+                    p.numel() for n, p in self.model. named_parameters()
+                    if all([x not in n for x in ['_mean', '_variance']])
+                ]) # exclude BatchNorm running status
+                print('params4: ', params4)
                 self._eval_batch_sampler = paddle.io.BatchSampler(
                     self.dataset, batch_size=self.cfg.EvalReader['batch_size'])
                 reader_name = '{}Reader'.format(self.mode.capitalize())
@@ -155,7 +175,7 @@ class Trainer(object):
         # TestDataset build after user set images, skip loader creation here
 
         # get Params
-        print_params = self.cfg.get('print_params', False)
+        print_params = self.cfg.get('print_params', True)
         if print_params:
             params = sum([
                 p.numel() for n, p in self.model.named_parameters()
@@ -163,7 +183,6 @@ class Trainer(object):
             ])  # exclude BatchNorm running status
             logger.info('Model Params : {} M.'.format((params / 1e6).numpy()[
                 0]))
-            print('params: ', params)
 
         # build optimizer in train mode
         if self.mode == 'train':
