@@ -8,11 +8,11 @@ import datetime
 import collections
 
 # Load the model
-cfg = load_config('configs/picodet/picodet_l_640_coco_lcnet.yml')
+cfg = load_config('configs/picodet/picodet_s_320_coco_lcnet_udtiri.yml')
 trainer = Trainer(cfg, mode='test')
 trainer.model.fuse_norm = False
 trainer.model.deploy = False
-trainer.load_weights('model/picodet_l_640_coco_lcnet/best_model.pdparams')
+trainer.load_weights('model/picodet_s_320_coco_lcnet_udtiri/best_model_epoch_209.pdparams')
 trainer.model.training = False
 
 # Start video capture
