@@ -7,11 +7,11 @@ _BASE_: [
 ]
 
 pretrain_weights: https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/legendary_models/PPLCNet_x0_75_pretrained.pdparams
-weights: model/picodet_s_320_coco_lcnet_udtiri/best_model_epoch_209.pdparams
+weights: model/picodet_s_320_coco_lcnet_udtiri/best_model_epoch.pdparams
 find_unused_parameters: True
 use_ema: true
 epoch: 300
-snapshot_epoch: 10
+snapshot_epoch: 1
 
 LCNet:
   scale: 0.75
