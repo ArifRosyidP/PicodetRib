@@ -14,7 +14,7 @@ epoch: 300
 snapshot_epoch: 1
 
 TrainReader:
-  batch_size: 64
+  batch_size: 32
   # batch_size: 48
 
 LearningRate:
