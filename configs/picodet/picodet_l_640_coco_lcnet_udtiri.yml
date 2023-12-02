@@ -10,8 +10,9 @@ pretrain_weights: https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/lege
 weights: model/picodet_l_640_coco_lcnet/best_model
 find_unused_parameters: True
 use_ema: true
+cycle_epoch: 40
 epoch: 300
-snapshot_epoch: 10
+snapshot_epoch: 1
 
 LCNet:
   scale: 2.0
@@ -42,4 +43,4 @@ LearningRate:
     steps: 300
 
 TrainReader:
-  batch_size: 12
+  batch_size: 32

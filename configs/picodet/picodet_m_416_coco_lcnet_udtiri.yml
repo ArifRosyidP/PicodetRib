@@ -1,0 +1,27 @@
+_BASE_: [
+  '../datasets/coco_detectionPotholeUdtiri.yml',
+  '../runtime.yml',
+  '_base_/picodet_v2.yml',
+  '_base_/optimizer_300e.yml',
+  '_base_/picodet_416_reader.yml',
+]
+
+weights: model/picodet_m_416_coco_lcnet/best_model
+find_unused_parameters: True
+use_ema: true
+cycle_epoch: 40
+epoch: 300
+snapshot_epoch: 1
+
+TrainReader:
+  batch_size: 64
+  # batch_size: 48
+
+LearningRate:
+  base_lr: 0.24
+  schedulers:
+  - name: CosineDecay
+    max_epochs: 300
+  - name: LinearWarmup
+    start_factor: 0.1
+    steps: 300

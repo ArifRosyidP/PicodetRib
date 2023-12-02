@@ -10,7 +10,8 @@ pretrain_weights: https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/lege
 weights: model/picodet_s_320_coco_lcnet_udtiri/best_model_epoch.pdparams
 find_unused_parameters: True
 use_ema: true
-epoch: 200
+cycle_epoch: 40
+epoch: 300
 snapshot_epoch: 1
 
 LCNet:
@@ -33,7 +34,7 @@ PicoHeadV2:
   feat_in_chan: 96
 
 TrainReader:
-  batch_size: 60
+  batch_size: 64
 
 LearningRate:
   base_lr: 0.32

@@ -3,16 +3,15 @@ _BASE_: [
   '../runtime.yml',
   '_base_/picodet_v2.yml',
   '_base_/optimizer_300e.yml',
-  '_base_/picodet_320_reader.yml',
+  '_base_/picodet_416_reader.yml',
 ]
 
 pretrain_weights: https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/legendary_models/PPLCNet_x0_75_pretrained.pdparams
-weights: model/picodet_s_320_coco_lcnet_udtiri/best_model_epoch.pdparams
+weights: model/picodet_s_416_coco_lcnet/best_model
 find_unused_parameters: True
 use_ema: true
-epoch: 200
-use_ema: true
-cycle_epoch: 50
+cycle_epoch: 40
+epoch: 300
 snapshot_epoch: 1
 
 LCNet:
@@ -35,10 +34,10 @@ PicoHeadV2:
   feat_in_chan: 96
 
 TrainReader:
-  batch_size: 60
+  batch_size: 64
 
 LearningRate:
-  base_lr: 0.32
+  base_lr: 0.24
   schedulers:
   - !CosineDecay
     max_epochs: 300
