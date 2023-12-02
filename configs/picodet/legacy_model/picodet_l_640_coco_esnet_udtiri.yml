@@ -35,7 +35,7 @@ PicoHead:
   feat_in_chan: 160
 
 TrainReader:
-  batch_size: 32
+  batch_size: 12
 
 LearningRate:
   base_lr: 0.06

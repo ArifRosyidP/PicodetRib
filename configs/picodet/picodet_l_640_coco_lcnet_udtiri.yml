@@ -43,4 +43,4 @@ LearningRate:
     steps: 300
 
 TrainReader:
-  batch_size: 32
+  batch_size: 12
