@@ -1,2 +1,1 @@
-# Atur model ke mode evaluasi
-# trainer.model.training = False
+model/picodet_l_640_coco_lcnet_udtiri/best_model_epoch_149.pdparams

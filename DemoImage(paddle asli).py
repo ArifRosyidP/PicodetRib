@@ -4,14 +4,12 @@ from ppdet.engine import Trainer
 
 cfg = load_config('configs/picodet/picodet_s_320_coco_lcnet_udtiri.yml')
 trainer = Trainer(cfg, mode='test')
-trainer.model.fuse_norm = False
-trainer.model.deploy = False
-trainer.load_weights('model/picodet_s_320_coco_lcnet_udtiri/best_model_epoch_209.pdparams')
-trainer.model.training = False
+trainer.load_weights('model/picodet_s_320_coco_lcnet_udtiri/best_model_epoch_251.pdparams')
 
-hasil = trainer.predict(
-    images=['demo/lubang2.jpg'],
+trainer.predict(
+    images= "dataset/udtiri/validImage/",
     draw_threshold=0.5,
-    output_dir='output/')
+    save_results=True,
+    output_dir='output/testingGaes')
 
-print(hasil)
+#print(hasil)
